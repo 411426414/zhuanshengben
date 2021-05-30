@@ -11,4 +11,13 @@ const config = {
     host: 'localhost',
     port: 4000
 }
+if (process.env.NODE_ENV === 'production'){
+    // 生产环境MySQL数据库配置
+    config.MYSQL = {
+        host: 'aaa.mysql.rds.aliyuncs.com',
+        database: 'aaa',
+        username: 'aaa',
+        password: 'aaa'
+    }
+}
 module.exports = config
