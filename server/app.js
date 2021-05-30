@@ -5,6 +5,20 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const { koaSwagger } = require('koa2-swagger-ui')
+
+
+// swagger配置
+const swagger = require('./util');
+app.use(swagger.routes(), swagger.allowedMethods())
+app.use(
+    koaSwagger({
+      routePrefix: '/swagger', // 主机设置为/swagger，而不是default /docs
+      swaggerOptions: {
+        url: '/swagger.json' // json的示例路径
+      }
+    })
+);
 
 // error handler
 onerror(app)
